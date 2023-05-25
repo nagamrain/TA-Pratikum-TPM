@@ -7,8 +7,13 @@ public class GameOverText : MonoBehaviour
 {
     [SerializeField] TMP_Text gameOverText;
 
-    public void UpdateText(int score)
+    public void UpdateTextOver(int score)
     {
         gameOverText.text = "Game Over\nScore: " + score;
+    }
+
+    public void UpdateTextContinue()
+    {
+        gameOverText.text = "Click Button To Continue";
     }
 }

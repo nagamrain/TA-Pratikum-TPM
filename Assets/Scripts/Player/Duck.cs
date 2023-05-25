@@ -13,9 +13,11 @@ public class Duck : MonoBehaviour
     [SerializeField] int  backMoveLimit;
     
     private Vector2 touchStartPosition;
+    private Vector3 respawnPosition;
     public UnityEvent<Vector3> onJumpEnd;
     public UnityEvent<int> OnGetCoin;
     public UnityEvent OnDie;
+    public UnityEvent OnRespawn;
     public UnityEvent OnCarCollision;
 
     private bool isMoveable = false;
@@ -165,7 +167,18 @@ public class Duck : MonoBehaviour
 
     private void Die() {
         {
+            respawnPosition = this.transform.position;
             OnDie.Invoke();
         }
+    }
+
+    public void Respawn()
+    {
+        transform.DOScaleY(1f, 0.1f);
+        
+        isMoveable = true;
+        OnRespawn.Invoke();
+
+        this.transform.position = respawnPosition;
     }
 }
